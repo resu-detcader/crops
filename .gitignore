@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 .vscode/settings.json
 .vscode/tasks.json
+
+#Settings JSON
+crops/settings.json
