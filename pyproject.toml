@@ -1,9 +1,9 @@
 [project]
 name = "crops"
 version = "0.1.0"
-description = ""
+description = "A program to cross-seed torrents"
 authors = [
-    {name = "=", email = "134729226+resu-detcader@users.noreply.github.com"},
+    {name = "", email = "134729226+resu-detcader@users.noreply.github.com"},
 ]
 dependencies = [
     "colorama>=0.4.6",
