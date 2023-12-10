@@ -10,7 +10,7 @@ def get_source(torrent_data):
         return None
 
 def get_infohash(torrent_data):
-    encoded_info = bencoder.encode(torrent_data[b"info"])
+    encoded_info = bencoder.bencode(torrent_data[b"info"])
     hash = sha1(encoded_info).hexdigest().upper()
 
     return hash
@@ -23,11 +23,11 @@ def get_new_hash(torrent_data, new_source):
 
 def get_torrent_data(filename):
     with open(filename, "rb") as f:
-        data = bencoder.decode(f.read())
+        data = bencoder.bdecode(f.read())
 
     return data
 
 
 def save_torrent_data(filename, torrent_data):
     with open(filename, "wb") as f:
-        f.write(bencoder.encode(torrent_data))
+        f.write(bencoder.bencode(torrent_data))

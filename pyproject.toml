@@ -1,0 +1,22 @@
+[project]
+name = "crops"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "=", email = "134729226+resu-detcader@users.noreply.github.com"},
+]
+dependencies = [
+    "colorama>=0.4.6",
+    "requests>=2.31.0",
+    "bencoder-pyx>=3.0.1",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.scripts]
+crops = "crops.__main__:main"
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"

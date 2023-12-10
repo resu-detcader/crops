@@ -6,7 +6,7 @@ class Config:
     def __init__(self):
         cwd = os.path.dirname(__file__)
         config_file = os.path.join(cwd, "settings.json")
-        
+
         if not os.path.exists(config_file):
             raise FileNotFoundError(f"settings.json does not exist in '{cwd}'.")
 

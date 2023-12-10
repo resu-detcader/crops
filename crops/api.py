@@ -4,7 +4,7 @@ import json
 
 import requests
 
-from errors import handle_error, AuthenticationError
+from .errors import handle_error, AuthenticationError
 
 
 class GazelleAPI:
@@ -52,15 +52,12 @@ class GazelleAPI:
                     description=err[0],
                     exception_details=err[1],
                     wait_time=self._retry_wait_time(current_retries),
-                    extra_description=f" (attempt {current_retries}/{self._max_retries})"
+                    extra_description=f" (attempt {current_retries}/{self._max_retries})",
                 )
                 current_retries += 1
             else:
                 sleep(0.2)
-        handle_error(
-            description="Maximum number of retries reached",
-            exit_=True
-        )
+        handle_error(description="Maximum number of retries reached", exit_=True)
 
     def _get_announce_url(self, tracker_url):
         try:

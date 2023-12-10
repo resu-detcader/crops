@@ -13,7 +13,7 @@ def get_torrent_url(site_url, torrent_id):
 def get_torrent_filepath(torrent_details, source, folder_out):
     filename = (
         f'{unescape(torrent_details["response"]["torrent"]["filePath"])} '
-        f'[{source}].torrent'
+        f"[{source}].torrent"
     )
     torrent_filepath = os.path.join(folder_out, filename)
     return torrent_filepath
