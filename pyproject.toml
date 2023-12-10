@@ -3,7 +3,8 @@ name = "crops"
 version = "0.1.0"
 description = "A program to cross-seed torrents"
 authors = [
-    {name = "", email = "134729226+resu-detcader@users.noreply.github.com"},
+    {name = "resu-detcader", email = "134729226+resu-detcader@users.noreply.github.com"},
+    {name = "soranosita"},
 ]
 dependencies = [
     "colorama>=0.4.6",
