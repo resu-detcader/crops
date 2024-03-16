@@ -71,7 +71,10 @@ def main():
                 api = ops
                 new_sources = ops_sources
             else:
-                p.skipped.print(f"Skipped: Source flag is {source.decode('utf8')}.")
+                try:
+                    p.skipped.print(f"Skipped: Source flag is {source.decode('utf8')}.")
+                except AttributeError:
+                    p.skipped.print("Skipped: Source flag is malformed.")
                 continue
 
         found_infohash_match = False
