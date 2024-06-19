@@ -1,3 +1,7 @@
+# type:ignore
+# Supress pylance error as this module overrides a stdlib module of same name
+# maybe rename file...
+
 from hashlib import sha1
 
 import bencoder
