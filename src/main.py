@@ -4,7 +4,7 @@ from api import RED, OPS
 from args import get_args
 from config import Config
 from downloader import get_torrent_id, get_torrent_url, get_torrent_filepath, download_torrent
-from filesystem import create_folder, get_files, get_filename
+from filesystem import create_folder, get_files, get_filename, write_json
 from parser import get_torrent_data, get_infohash, get_new_hash, get_source, save_torrent_data
 from progress import Progress
 from urllib.parse import urlparse
@@ -27,6 +27,7 @@ def main():
     create_folder(args.folder_out)
     local_torrents = get_files(args.folder_in)
     dest_torrents = get_files(args.folder_out)
+    hash_lookup = {}
     p = Progress(len(local_torrents))
     if args.download:
         p.generated.name = "Downloaded for cross-seeding"
@@ -36,6 +37,7 @@ def main():
 
     for i, torrent_path in enumerate(local_torrents, 1):
         filename = get_filename(torrent_path)
+        old_hash = get_infohash(get_torrent_data(torrent_path))
         print(f"{i}/{p.total}) {filename}")
 
         try:
@@ -111,7 +113,8 @@ def main():
                     torrent_details, api.sitename, args.folder_out
                 )
                 torrent_id = get_torrent_id(torrent_details)
-
+                hash_lookup[new_hash] = old_hash
+                
                 if args.download:
                     download_torrent(api, torrent_filepath, torrent_id)
 
@@ -146,6 +149,9 @@ def main():
 
         if not torrent_successful:
             p.not_found.increment()
+
+    if args.lookup:  
+        write_json(hash_lookup, args.folder_out, 'hash-lookup.json')
 
     print(p.report())
 

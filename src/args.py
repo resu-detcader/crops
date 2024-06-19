@@ -47,5 +47,11 @@ def get_args():
         action="store_true",
         help="download final .torrent files instead of generating them",
     )
+    extras.add_argument(
+        "--lookup",
+        action="store_true",
+        help="creates hash-lookup.json in folder_out which contains a mapping of \
+        matched/old hashes to hashes of download/created .torrent files"
+    )
 
     return parser.parse_args()
