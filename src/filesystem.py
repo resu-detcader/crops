@@ -1,4 +1,4 @@
-import os
+import os, json
 
 
 def get_filename(path):
@@ -16,3 +16,7 @@ def get_files(input_folder, extension=".torrent"):
         for filename in os.listdir(input_folder)
         if filename.endswith(extension)
     ]
+
+def write_json(json_dict: dict, folder: str, filename: str): 
+    with open(os.path.join(folder, filename), 'w') as f: 
+        json.dump(json_dict, f)
